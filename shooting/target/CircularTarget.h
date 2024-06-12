@@ -12,9 +12,9 @@ public:
         int radius = width / 2;
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
-                if (isInCircle(x, y, centerX, centerY, radius)) {
-                    target[y][x] = '*';
-                }
+            if (isInCircle(x, y, centerX, centerY, radius)) {
+            target[y][x] = '*';
+            }
             }
         }
     }
