@@ -129,15 +129,21 @@
   <ItemGroup>
     <ClCompile Include="console_source\ConsoleControl.cpp" />
     <ClCompile Include="individual task.cpp" />
+    <ClCompile Include="shooting\shooter\Shooter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Текст.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="interface\interface.h" />
+    <ClInclude Include="consoleconfig\setings.h" />
     <ClInclude Include="console_source\ConsoleControl.h" />
+    <ClInclude Include="interface\textStats.h" />
+    <ClInclude Include="shooting\shooter\Shooter.h" />
     <ClInclude Include="shooting\target\AbstractTarget.h" />
     <ClInclude Include="shooting\target\CircularTarget.h" />
     <ClInclude Include="shooting\target\HumanFigureTarget.h" />
+    <ClInclude Include="sounds\sounds.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

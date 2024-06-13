@@ -6,6 +6,11 @@ public:
         draw();
     }
 
+    CircularTarget() : AbstractTarget(31, 31) {
+        draw();
+    }
+
+
     void draw() override {
         int centerX = width / 2;
         int centerY = height / 2;

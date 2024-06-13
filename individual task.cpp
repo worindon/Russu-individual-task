@@ -1,77 +1,74 @@
-﻿
-#include <iostream>
+﻿#include <iostream>
 #include <windows.h>
-#include "shooting/target/CircularTarget.h"
-#include "console_source/ConsoleControl.h"
 #include <algorithm>
-#include <time.h> 
+#include <ctime>
 #include <conio.h>
+#include <string>
+#include <chrono>
+#include <thread>
+#include <cstdlib>
 
 
 
-int main(){
+#include "shooting/shooter/Shooter.h"
+#include "shooting/target/CircularTarget.h"
 
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	DWORD mode;
-	GetConsoleMode(hConsole, &mode);
-	mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING; // Устанавливаем флаг для включения поддержки ANSI Escape-кодов
-	SetConsoleMode(hConsole, mode);
+#include "console_source/ConsoleControl.h"
+#include "consoleconfig/setings.h"
 
-	console::SetConsoleFont(16, 16);
+#include "interface/textStats.h"
+#include "sounds/sounds.h"
 
-	// Set console buffer size to a reasonable size (ensure it matches the desired window size)
-	console::SetConsoleBufferSize(80, 30);
 
-	// Set console window size to 600x600 pixels
-	console::SetConsoleSize(800, 600);
-	console::DisableScrollAndResize();
-	srand(time(NULL));
-	
-		CircularTarget circ(31);
-	char ch;
 
-	console::setCursorAbsolutePosition(0, 0);
-	circ.print();
-	ch = _getch();
 
-	int n = 15, b = 15;
-	cerr << "\033[?25l";  //invisible cursore
-	while (true)
-	{
-		n = rand() % 31;
-		b = rand() % 31;
-		console::setCursorAbsolutePosition(0, 0);
+int main() {
+    setlocale(LC_ALL, ("ru"));
 
-		console::setCursorAbsolutePosition(1, circ.getCenterCoordinates().first * 2 + 5);
-		console::saveCursorPosition();
-		std::cout << "       ";
-		console::restoreCursorPosition();
-		cout << n+1;
-		//std::cin >> n;
-		console::setCursorAbsolutePosition(2, circ.getCenterCoordinates().first * 2 + 5);
-		console::saveCursorPosition();
-		std::cout << "       ";
-		console::restoreCursorPosition();
-		cout << b+1;
-		//std::cin >> b;
-		if (circ.shoot(n, b)) {
-			console::setCursorAbsolutePosition(3, circ.getCenterCoordinates().first * 2 + 5);
-			console::saveCursorPosition();
-			std::cout << "       ";
-			console::restoreCursorPosition();
-			std::cout << "HIT";
-		}
-		else
-		{
-			console::setCursorAbsolutePosition(3, circ.getCenterCoordinates().first * 2 + 5);
-			console::saveCursorPosition();
-			std::cout << "       ";
-			console::restoreCursorPosition();
-			std::cout << "MISS";
-		}
-		console::setCursorAbsolutePosition(0, 0);
-		circ.print();
 
-		ch = _getch();
-	}
+    //setings
+    settings::mySetings(800, 600, 16, 16);
+    string name("Ivan");
+    CircularTarget circ(31);
+    HumanFigureTarget hum(31, 31);
+    char ch;
+    cerr << "\033[?25l";  //invisible cursor
+    console::setCursorAbsolutePosition(0, 0);
+    circ.print();
+    ch = _getch();
+
+    int n, b;
+
+    Shooter shooter(name);
+
+    while (true)
+    {
+        ch = _getch();
+        std::thread soundThread(play::playMP3, "sounds/2.mp3", 1250);
+        soundThread.detach();
+        if (ch == 27) break; 
+        n = rand() % 31;
+        b = rand() % 31;
+
+        if(textStats::messageHitOrMiss(2, circ.getCenterCoordinates().first * 2+5, shooter.fire(circ, n, b))){
+            std::thread soundThread(play::playMP3, "sounds/2.mp3", 1250);
+            soundThread.detach();
+        }
+        textStats::outpadStatistikElement(n, 1, circ.getCenterCoordinates().first * 2 + 5);
+        textStats::outpadStatistikElement(b, 1, circ.getCenterCoordinates().first * 2 + 8);
+            
+        textStats::outpadShooterStats(5, circ.getCenterCoordinates().first * 2 + 5, shooter);
+
+        
+
+
+        console::setCursorAbsolutePosition(0, 0);
+        circ.print();
+        
+        Sleep(50);
+    }
+    play::playMP3("sounds/4.mp3", 1500);
+    std::cout << "Программа завершена. Нажмите любую клавишу для выхода..." << std::endl;
+    std::cin.get();
+    return 0;
 }

@@ -51,6 +51,13 @@ void console::DisableScrollAndResize() {
 	SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), csbi.dwSize);
 }
 
+void console::SetingsForAnsii() {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	DWORD mode;
+	GetConsoleMode(hConsole, &mode);
+	mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING; // Устанавливаем флаг для включения поддержки ANSI Escape-кодов
+	SetConsoleMode(hConsole, mode);
+}
 
 void console::setCursorAbsolutePosition(int row, int col) {
 

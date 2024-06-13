@@ -12,12 +12,12 @@ namespace console {
 	void SetConsoleFont(int fontWidth, int fontHeight);
 	void SetConsoleBufferSize(int columns, int rows);
 	void DisableScrollAndResize();
+	void SetingsForAnsii();
 
 
-
-
-	void restoreCursorPosition();
 	void saveCursorPosition();
+	void restoreCursorPosition();
+
 
 
 	void setCursorAbsolutePosition(int row, int col);

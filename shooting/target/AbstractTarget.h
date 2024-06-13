@@ -25,12 +25,18 @@ public:
 
     void print() {
         for (const auto& row : target) {
-            for (const auto& cell : row) {
-                if (cell == 'X') console::setFoneColor("red");
-                std::cout << cell;
+            for (const auto& ell : row) {
+                if (ell == 'X') console::setFoneColor("red");
+                std::cout << ell;
                 console::setFoneColor("black");
             }
             std::cout << std::endl;
         }
     }
+
+    char at(int x, int y) {
+        return target[x][y];
+    }
+
+
 };
