@@ -1,0 +1,23 @@
+﻿  individual task.cpp
+C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\Source\consoleconfig\setings.h(11,19): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  (компиляция исходного файла "MainProject/individual%20task.cpp")
+  
+C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\Source\console_source\consolewindow\mainwindow.h(56,61): warning C4267: аргумент: преобразование из "size_t" в "DWORD"; возможна потеря данных
+  (компиляция исходного файла "MainProject/individual%20task.cpp")
+  
+C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\Source\console_source\consolewindow\mainwindow.h(73,13): warning C4311: приведение типов: усечение указателя из "HINSTANCE" в "int"
+  (компиляция исходного файла "MainProject/individual%20task.cpp")
+  
+C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\Source\console_source\consolewindow\mainwindow.h(73,13): warning C4302: приведение типов: усечение из "HINSTANCE" к "int"
+  (компиляция исходного файла "MainProject/individual%20task.cpp")
+  
+C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\Source\console_source\consolewindow\mainwindow.h(74,53): warning C4311: приведение типов: усечение указателя из "HINSTANCE" в "int"
+  (компиляция исходного файла "MainProject/individual%20task.cpp")
+  
+C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\Source\console_source\consolewindow\mainwindow.h(74,53): warning C4302: приведение типов: усечение из "HINSTANCE" к "int"
+  (компиляция исходного файла "MainProject/individual%20task.cpp")
+  
+C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\interface\OutputClasses\Field.h(16,16): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  (компиляция исходного файла "MainProject/individual%20task.cpp")
+  
+  individual task.vcxproj -> C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\x64\Debug\individual task.exe
