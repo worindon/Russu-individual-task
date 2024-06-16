@@ -1,5 +1,4 @@
-﻿  ConsoleControl.cpp
-  individual task.cpp
+﻿  individual task.cpp
 C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\Source\consoleconfig\setings.h(11,19): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   (компиляция исходного файла "MainProject/individual%20task.cpp")
   
@@ -26,6 +25,4 @@ C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task
 C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\individual task.cpp(51,39): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
 C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\individual task.cpp(57,36): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
 C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\individual task.cpp(58,33): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-  Shooter.cpp
-  Создание кода...
   individual task.vcxproj -> C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\x64\Debug\individual task.exe
