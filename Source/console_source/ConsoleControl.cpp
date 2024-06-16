@@ -173,7 +173,7 @@ void console::moveCursorDown() {
 void console::indicator_on(const char sumbol[]) {
 	console::setCursorPositionInLine(1);
 	console::setFoneColor("green");
-	cout << "   " << sumbol << " ";
+	cout << sumbol;
 	console::setCursorPositionInLine(1);
 	console::setFoneColor("black");
 }
@@ -181,7 +181,7 @@ void console::indicator_on(const char sumbol[]) {
 void console::indicator_off() {
 	console::setCursorPositionInLine(1);
 	//setFoneColor("black");
-	cout << "       ";
+	cout << " ";
 	setCursorPositionInLine(1);
 }
 
@@ -191,4 +191,35 @@ void console::saveCursorPosition() {
 
 void console::restoreCursorPosition() {
 	cerr<<("\033[u"); // ANSI escape sequence для восстановления позиции курсора
+}
+
+int console::actionIndicatorForMenu(int zero_line, int end_poz) {
+
+	char ch; short num = 1;             
+	console::setCursorAbsolutePosition(zero_line, 1);
+	char sumb[] = ">";                  
+
+	console::indicator_on(sumb);                   
+
+	while (true) {
+		ch = _getch();                      
+		if (ch == 'P' && num < end_poz) {   
+			console::indicator_off();                
+			console::setCursorPositionShiftDown(1);  
+			num++;
+			console::indicator_on(sumb);
+		}
+		else if (num > 1 && ch == 'H') {   
+			console::indicator_off();
+			console::setCursorPositionShiftUp(1);
+			num--;
+			console::indicator_on(sumb);
+
+		}
+		else if (ch == '\r') {             
+			console::indicator_off();           
+			cerr << "\033[?25h";           
+			return num;                     
+		}
+	}
 }

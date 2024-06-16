@@ -20,7 +20,11 @@
 
 
     void game(int TargetSize, bool sound_on, AbstractTarget& target, Shooter& shooter, MainConsoleApp& mainApp, bool loop = false) {
+        console::clearConsoleScreen();
+        field(1, 1, 25).print("press any key to start");
         char ch = _getch();
+
+        
 
         //ch = _getch();
 
@@ -30,7 +34,7 @@
 
         while (true) {
 
-            // Проверка нажатия Esc для выхода
+            // Проверка нажатия Esc для выхода 
             if (ch == 27) break;
 
             std::pair<int, int> coordinats = scope(target, lastpos);

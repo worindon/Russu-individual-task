@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string.h>
 #include <windows.h>
+#include <conio.h>
 
 
 using namespace std;
@@ -18,7 +19,7 @@ namespace console {
 	void saveCursorPosition();
 	void restoreCursorPosition();
 
-
+	int actionIndicatorForMenu(int zero_line, int end_poz);
 
 	void setCursorAbsolutePosition(int row, int col);
 	void setCursorPositionInLine(int col);

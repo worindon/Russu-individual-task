@@ -16,41 +16,85 @@
 #include "interface/textStats.h"
 #include "sounds/sounds.h"
 
-
-int main() {
-    const int TargetSize = 31;
+const int TargetSize = 31;
     const int CharSize = 16;
     const bool sound_on = true;
     const  std::wstring exePath = L"mess.exe";
-    //setlocale(LC_ALL, "ru");
-    std::cout << "\033[?25l";
-
-    /*Field field1(15, 15, 10);
-    field1.print("rwewerwrer");
-    cout << endl;
-    system("pause")*/;
 
 
+    const std::string firsmessage("Hi, it`s my individual task");
+    const std::string secondmessage("press any key to continue");
+
+
+    const std::string info("you can use arrows, esc and enter");
+    const std::string modeselectmenu("Chose mode");
+    const std::string circularmode(" Round target");
+    const std::string humanmode(" Target in the form of a human figure");
+
+
+
+int main() {
+    setlocale(LC_ALL, "ru");
     settings::mySetings(800, 600, CharSize, CharSize);
+    std::cout << "\033[?25l";   //делает курсор невидимым
     MainConsoleApp mainApp(exePath);
     console::clearConsoleScreen();
-
-
     CircularTarget circ(TargetSize);
     HumanFigureTarget hum(TargetSize, TargetSize);
 
     std::string name("Ivan");
 
     Shooter shooter(name);
-    //shooter.fire(circ, 14, 12);
-    circ.print();
-    std::pair<int, int> coord = circ.getCenterCoordinates();
-    game(TargetSize, sound_on, circ, shooter, mainApp);
+
+    field(10, 10, firsmessage.length()).print(firsmessage);
+    field(11, 10, info.length()).print(info);
+    field(13, 10, secondmessage.length()).print(secondmessage);
+
+    field(20, 20, 25).print("created by Russu Yaroslav");
+    cin.get();
+    console::clearConsoleScreen();
+    field(1, 1, 35).print("Chose mode");
+    field(2, 1, circularmode.length()).print(circularmode);
+    field(3, 1, humanmode.length()).print(humanmode);
 
 
 
-   // play::playMP3("sounds/4.mp3", 1500);
-    std::cin.get();
+    int mode = console::actionIndicatorForMenu(2, 2);
+    std::cout << "\033[?25l";
+    console::clearConsoleScreen();
+
+    std::pair<int, int> coord1 = hum.getCenterCoordinates();
+    std::pair<int, int> coord2 = circ.getCenterCoordinates();
+
+    switch (mode)
+    {
+    case 1:
+        game(TargetSize, sound_on, circ, shooter, mainApp);
+        break;
+    case 2:
+        game(TargetSize, sound_on, hum, shooter, mainApp);
+
+    default:
+        break;
+    }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
 
     return 0;
 }

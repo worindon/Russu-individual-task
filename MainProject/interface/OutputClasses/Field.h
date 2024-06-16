@@ -3,40 +3,53 @@
 #include <string>
 
 
-class Field
+class field
 {
 public:
-	Field(int x, int y, int lenth);
+	field(int x, int y, int length, bool erase = false);
 
 
-	void print(const std::string& str) {
-		console::setCursorAbsolutePosition(x, y);
-		for (int i = 0; i < lenth; ++i) { cout << ' '; }
+    void print(const std::string& str) {
+        console::saveCursorPosition();
+        console::setCursorAbsolutePosition(x, y);
 
-		int strlenth = str.length();
-		for (int i = 0; i < strlenth || i < lenth; ++i) {
-			cout << str[i];
-		}
-	}
+        int strLength = str.length();
 
-	~Field();
+        for (int i = 0; i < this->length; ++i) {
+            if (i < strLength) {
+                std::cout << str[i];
+            }
+            else {
+                std::cout << ' ';
+            }
+        }
+        console::restoreCursorPosition();
+    }
+
+
+    void erase() {
+        console::saveCursorPosition();
+        console::setCursorAbsolutePosition(x, y);
+        for (int i = 0; i < this->length; ++i) {
+        std::cout << ' ';       
+        }
+        console::restoreCursorPosition();
+    }
+
+    ~field(){if (_erase) {erase();}}
 
 private:
 
 	int x = 0;
 	int y = 0;
-	int lenth;
-	std::string str;
-
-
-
+	int length;
+    bool _erase;
+    
 };
 
-Field::Field(int x, int y, int lenth) {
+field::field(int x, int y, int length, bool erase) {
 	this->x = x;
 	this->y = y;
-	this->lenth = lenth;
-}
-Field::~Field()
-{
+	this->length = length;
+    this->_erase = erase;
 }
