@@ -170,16 +170,16 @@ void console::moveCursorDown() {
 	cerr << "\033[B";
 }
 
-void console::indicator_on(const char sumbol[]) {
-	console::setCursorPositionInLine(1);
+void console::indicator_on(const char sumbol[], int posinline) {
+	console::setCursorPositionInLine(posinline);
 	console::setFoneColor("green");
 	cout << sumbol;
 	console::setCursorPositionInLine(1);
 	console::setFoneColor("black");
 }
 
-void console::indicator_off() {
-	console::setCursorPositionInLine(1);
+void console::indicator_off(int posinline) {
+	console::setCursorPositionInLine(posinline);
 	//setFoneColor("black");
 	cout << " ";
 	setCursorPositionInLine(1);
@@ -193,27 +193,27 @@ void console::restoreCursorPosition() {
 	cerr<<("\033[u"); // ANSI escape sequence для восстановления позиции курсора
 }
 
-int console::actionIndicatorForMenu(int zero_line, int end_poz) {
+int console::actionIndicatorForMenu(int zero_line, int end_poz, int posinline) {
 
 	char ch; short num = 1;             
-	console::setCursorAbsolutePosition(zero_line, 1);
+	console::setCursorAbsolutePosition(zero_line, posinline);
 	char sumb[] = ">";                  
 
-	console::indicator_on(sumb);                   
+	console::indicator_on(sumb, posinline);
 
 	while (true) {
 		ch = _getch();                      
 		if (ch == 'P' && num < end_poz) {   
-			console::indicator_off();                
+			console::indicator_off(posinline);
 			console::setCursorPositionShiftDown(1);  
 			num++;
-			console::indicator_on(sumb);
+			console::indicator_on(sumb, posinline);
 		}
 		else if (num > 1 && ch == 'H') {   
-			console::indicator_off();
+			console::indicator_off(posinline);
 			console::setCursorPositionShiftUp(1);
 			num--;
-			console::indicator_on(sumb);
+			console::indicator_on(sumb, posinline);
 
 		}
 		else if (ch == '\r') {             

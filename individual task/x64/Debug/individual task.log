@@ -23,6 +23,6 @@ C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task
 C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\individual task.cpp(49,37): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
 C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\individual task.cpp(50,30): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
 C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\individual task.cpp(51,39): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\individual task.cpp(57,36): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\individual task.cpp(58,33): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\individual task.cpp(57,38): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\MainProject\individual task.cpp(58,35): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
   individual task.vcxproj -> C:\Users\russu\OneDrive\Робочий стіл\курсовая\individual task\x64\Debug\individual task.exe

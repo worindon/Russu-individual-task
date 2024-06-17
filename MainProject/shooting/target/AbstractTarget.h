@@ -41,4 +41,7 @@ public:
     std::pair <int, int> size() const {
         return std::make_pair(width, height);
     }
+
+
+    void erasetarget() { draw(); }
 };

@@ -21,10 +21,23 @@
 
     void game(int TargetSize, bool sound_on, AbstractTarget& target, Shooter& shooter, MainConsoleApp& mainApp, bool loop = false) {
         console::clearConsoleScreen();
-        field(1, 1, 25).print("press any key to start");
+        field pressanykey(13, 15, 25);
+        pressanykey.print("press any key to start");
         char ch = _getch();
+        console::clearConsoleScreen();
+        textStats::outpadShooterStats(5, target.getCenterCoordinates().first * 2 + 5, shooter);
 
-        
+        // Отправка сообщения в консоль для ошибок
+        mainApp.sendMessageToErrorConsole("coordinates = " + std::to_string(0) + "  and " + std::to_string(0));
+        mainApp.sendMessageToErrorConsole(to_string(shooter.get_shoots()) + " shoots and " + to_string(shooter.get_hits()) + " hits");
+        mainApp.sendMessageToErrorConsole(" ");
+
+
+        console::setCursorAbsolutePosition(0, 0);
+        target.print();
+
+
+
 
         //ch = _getch();
 
@@ -33,16 +46,13 @@
         std::pair<int, int> lastpos(target.getCenterCoordinates());
 
         while (true) {
-
-            // Проверка нажатия Esc для выхода 
             if (ch == 27) break;
-
             std::pair<int, int> coordinats = scope(target, lastpos);
-            
-
             int n = coordinats.first;
             int b = coordinats.second;
             if (n==-1 or b == -1) return;
+
+            
             
 
 
@@ -55,7 +65,7 @@
             // Выстрел и проверка попадания
             if (textStats::messageHitOrMiss(2, target.getCenterCoordinates().first * 2 + 5, shooter.fire(target, n, b))) {
                 if (sound_on) {
-                    std::thread soundThread(play::playMP3, "2.mp3", 1250);
+                    std::thread soundThread(play::playMP3, "2.mp3", 200);
                     soundThread.detach();
                 }
             }

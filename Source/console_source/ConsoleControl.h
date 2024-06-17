@@ -19,7 +19,7 @@ namespace console {
 	void saveCursorPosition();
 	void restoreCursorPosition();
 
-	int actionIndicatorForMenu(int zero_line, int end_poz);
+	int actionIndicatorForMenu(int zero_line, int end_poz, int posinline = 1);
 
 	void setCursorAbsolutePosition(int row, int col);
 	void setCursorPositionInLine(int col);
@@ -34,6 +34,6 @@ namespace console {
 	void setFoneColor(const char color[]);
 	void resetConsoleColor();
 	void moveCursorDown();
-	void indicator_on(const char sumbol[] = "  ");
-	void indicator_off();
+	void indicator_on(const char sumbol[] = "  ", int posinline = 1);
+	void indicator_off(int posinline = 1);
 }

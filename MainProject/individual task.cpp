@@ -53,18 +53,21 @@ int main() {
     field(20, 20, 25).print("created by Russu Yaroslav");
     cin.get();
     console::clearConsoleScreen();
-    field(1, 1, 35).print("Chose mode");
-    field(2, 1, circularmode.length()).print(circularmode);
-    field(3, 1, humanmode.length()).print(humanmode);
+    field(12, 10, 35).print(" Chose mode");
+    field(13, 10, circularmode.length()).print(circularmode);
+    field(14, 10, humanmode.length()).print(humanmode);
 
 
 
-    int mode = console::actionIndicatorForMenu(2, 2);
+    int mode = console::actionIndicatorForMenu(13, 2, 10);
     std::cout << "\033[?25l";
     console::clearConsoleScreen();
 
     std::pair<int, int> coord1 = hum.getCenterCoordinates();
     std::pair<int, int> coord2 = circ.getCenterCoordinates();
+
+
+
 
     switch (mode)
     {
