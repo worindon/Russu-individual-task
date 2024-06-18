@@ -28,6 +28,7 @@
     const std::string modeselectmenu("Chose mode");
     const std::string circularmode(" Round target");
     const std::string humanmode(" Target in the form of a human figure");
+    const std::string statsmode(" Show stats");
 
     const int consoleWidth = 800;
     const int consoleHeight = 600;
@@ -45,9 +46,6 @@ int main() {
     CircularTarget circ(TargetSize);
     HumanFigureTarget hum(TargetSize, TargetSize);
 
-    std::string name("Ivan");
-
-    Shooter shooter(name);
 
     field(10, 10, firsmessage.length()).print(firsmessage);
     field(11, 10, info.length()).print(info);
@@ -56,29 +54,49 @@ int main() {
     field(20, 20, 25).print("created by Russu Yaroslav");
     cin.get();
     console::clearConsoleScreen();
-    field(12, 10, 35).print(" Chose mode");
-    field(13, 10, circularmode.length()).print(circularmode);
-    field(14, 10, humanmode.length()).print(humanmode);
+    field(12, 12, 35).print(" Enter your name");
 
-
-
-    int mode = console::actionIndicatorForMenu(13, 2, 10);
-    std::cout << "\033[?25l";
+    console::setCursorAbsolutePosition(13, 13);
+    std::string name;
+    console::setConsoleTextColor("green");
+    cin >> name;
+    console::setConsoleTextColor("white");
     console::clearConsoleScreen();
+    Shooter shooter(name);
+
+
 
     std::pair<int, int> coord1 = hum.getCenterCoordinates();
     std::pair<int, int> coord2 = circ.getCenterCoordinates();
+        while (true) {
 
-    switch (mode)
-    {
-    case 1:
-        game(TargetSize, sound_on, circ, shooter, mainApp);
-        break;
-    case 2:
-        game(TargetSize, sound_on, hum, shooter, mainApp);
+            field(12, 10, 35).print(" Chose mode");
+            field(13, 10, circularmode.length()).print(circularmode);
+            field(14, 10, humanmode.length()).print(humanmode);
+            field(15, 10, statsmode.length()).print(statsmode);
+            field(16, 10, 10).print(" Exit");
 
-    default:
-        break;
-    }
+
+
+            int mode = console::actionIndicatorForMenu(13, 4, 10);
+            std::cout << "\033[?25l";
+            console::clearConsoleScreen();
+            if (mode == 4) break;
+            switch (mode)
+            {
+            case 1:
+                game(TargetSize, sound_on, circ, shooter, mainApp);
+                break;
+            case 2:
+                game(TargetSize, sound_on, hum, shooter, mainApp);
+                break;
+            case  3:
+                printShooterStat(shooter);
+                _getch();
+                break;
+            }
+            console::clearConsoleScreen();
+        }
+
     return 0;
 }

@@ -29,10 +29,11 @@ public:
 
 	int get_misses() const { return misses; } 
 	int get_hits() const { return hits; }
-	int get_shoots() const { return shoots; }
+	int get_shots() const { return shoots; }
 	double get_fidelity() const {
 		if (this->hits == 0 or this->shoots==0) return 0;
 		return (double)hits / shoots * 100;
 	}
+	std::string get_name() const { return this->name; }
 };
 

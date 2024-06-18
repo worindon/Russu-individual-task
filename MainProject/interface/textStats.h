@@ -16,7 +16,7 @@ namespace textStats {
     void outpadShooterStats(int x, int y, Shooter& shooter) {
         console::setCursorAbsolutePosition(x, y);
         console::saveCursorPosition();
-        cout << shooter.get_shoots() << " shoots";
+        cout << shooter.get_shots() << " shoots";
         console::restoreCursorPosition();
         console::setCursorPositionShiftDown(2);
         cout << shooter.get_hits() << " hits";

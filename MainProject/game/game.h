@@ -12,7 +12,6 @@
 #include "../interface/interface.h"
 
 #include "../interface/OutputClasses/Field.h"
-
 #include "../interface/textStats.h"
 #include "../sounds/sounds.h"
 
@@ -28,7 +27,7 @@ const int soud_len = 250;
         textStats::outpadShooterStats(5, target.getCenterCoordinates().first * 2 + 5, shooter);
 
         //mainApp.sendMessageToErrorConsole("coordinates = " + std::to_string(0) + "  and " + std::to_string(0));
-        //mainApp.sendMessageToErrorConsole(to_string(shooter.get_shoots()) + " shoots and " + to_string(shooter.get_hits()) + " hits");
+        //mainApp.sendMessageToErrorConsole(to_string(shooter.get_shots()) + " shoots and " + to_string(shooter.get_hits()) + " hits");
         mainApp.sendMessageToErrorConsole(" ");
 
 
@@ -44,11 +43,11 @@ const int soud_len = 250;
             if (n==-1 or b == -1) return;
 
 
-            bool isShoot = textStats::messageHitOrMiss(2, target.getCenterCoordinates().first * 2 + 5, shooter.fire(target, n, b));
+            bool isShot = textStats::messageHitOrMiss(2, target.getCenterCoordinates().first * 2 + 5, shooter.fire(target, n, b));
 
 
 
-            if (isShoot) {
+            if (isShot) {
                 if (sound_on) {
                     std::thread soundThread(play::playMP3, "2.mp3", soud_len);
                     soundThread.detach();
@@ -62,7 +61,7 @@ const int soud_len = 250;
                 mainApp.sendMessageToErrorConsole("MISS");
             }
             mainApp.sendMessageToErrorConsole("coordinates = " + std::to_string(n + 1) + "  and " + std::to_string(b + 1));
-            mainApp.sendMessageToErrorConsole(to_string(shooter.get_shoots()) + " shoots and " + to_string(shooter.get_hits()) + " hits");
+            mainApp.sendMessageToErrorConsole(to_string(shooter.get_shots()) + " shoots and " + to_string(shooter.get_hits()) + " hits");
 
             // Вывод статистики и информации о стрелке
             //textStats::outpadStatistikElement(n, 1, target.getCenterCoordinates().first * 2 + 5);
@@ -76,5 +75,15 @@ const int soud_len = 250;
             target.print();
 
         }
+    }
+
+    void printShooterStat(const Shooter& shooter) {
+        const std::string name = "Shooter name - " + shooter.get_name();
+        const int shots = shooter.get_shots();
+        const double fidelity = shooter.get_fidelity();
+        console::clearConsoleScreen();
+        field(2, 2, name.length()).print(name);
+        field(3, 2, 20).print("You fired " + to_string(shots) + " shots");
+        field(4, 2, 30).print("Your fidelity - " + to_string(fidelity) + " %");
     }
 
