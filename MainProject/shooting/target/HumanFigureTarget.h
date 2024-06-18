@@ -54,15 +54,6 @@ public:
     }// Feet
 }
 
-void printMatrix(const char matrix[31][31]) {
-    for (int i = 0; i < 31; ++i) {
-        for (int j = 0; j < 31; ++j) {
-            std::cout << target[i][j];
-        }
-        std::cout << std::endl;
-    }
-    }
-
     std::pair<int, int> getCenterCoordinates() override {
         return {width / 2, height / 2};
     }
