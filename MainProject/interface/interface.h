@@ -51,7 +51,7 @@ std::pair<int, int> scope(const AbstractTarget& targ, const std::pair<int, int>&
         char ch = _getch();
 
         if (ch == 0 || ch == -32) {
-            ch = _getch(); // ѕолучаем второй байт специальной клавиши
+            ch = _getch(); 
 
             switch (ch) {
             case 72:
@@ -98,7 +98,7 @@ std::pair<int, int> scope(const AbstractTarget& targ, const std::pair<int, int>&
        
 
     }
-    return startpos;
+        return { x ,y };
 }
 
 

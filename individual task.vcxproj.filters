@@ -56,12 +56,6 @@
     <ClInclude Include="MainProject\sounds\sounds.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Source\console_source\consolewindow\mainwindow.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\console_source\consolewindow\secondwindow.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="MainProject\interface\OutputClasses\Field.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>

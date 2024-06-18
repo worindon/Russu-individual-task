@@ -19,10 +19,8 @@
     const bool sound_on = true;
     const  std::wstring exePath = L"mess.exe";
 
-
     const std::string firsmessage("Hi, it`s my individual task");
     const std::string secondmessage("press any key to continue");
-
 
     const std::string info("you can use arrows, esc and enter");
     const std::string modeselectmenu("Chose mode");
@@ -41,7 +39,6 @@ int main() {
     std::cout << "\033[?25l";   //делает курсор невидимым
 
 
-    MainConsoleApp mainApp(exePath);
     console::clearConsoleScreen();
     CircularTarget circ(TargetSize);
     HumanFigureTarget hum(TargetSize, TargetSize);
@@ -51,7 +48,7 @@ int main() {
     field(11, 10, info.length()).print(info);
     field(13, 10, secondmessage.length()).print(secondmessage);
 
-    field(20, 20, 25).print("created by Russu Yaroslav");
+    field(20, 20, 26).print("created by Russu Yaroslav");
     cin.get();
     console::clearConsoleScreen();
     field(12, 12, 35).print(" Enter your name");
@@ -76,19 +73,20 @@ int main() {
             field(15, 10, statsmode.length()).print(statsmode);
             field(16, 10, 10).print(" Exit");
 
-
-
             int mode = console::actionIndicatorForMenu(13, 4, 10);
+
             std::cout << "\033[?25l";
+
             console::clearConsoleScreen();
+
             if (mode == 4) break;
             switch (mode)
             {
             case 1:
-                game(TargetSize, sound_on, circ, shooter, mainApp);
+                game(TargetSize, sound_on, circ, shooter);
                 break;
             case 2:
-                game(TargetSize, sound_on, hum, shooter, mainApp);
+                game(TargetSize, sound_on, hum, shooter);
                 break;
             case  3:
                 printShooterStat(shooter);
