@@ -16,7 +16,7 @@
 #include "../interface/textStats.h"
 #include "../sounds/sounds.h"
 
-
+const int soud_len = 250;
 
 
     void game(int TargetSize, bool sound_on, AbstractTarget& target, Shooter& shooter, MainConsoleApp& mainApp, bool loop = false) {
@@ -27,19 +27,10 @@
         console::clearConsoleScreen();
         textStats::outpadShooterStats(5, target.getCenterCoordinates().first * 2 + 5, shooter);
 
-        // Отправка сообщения в консоль для ошибок
-        mainApp.sendMessageToErrorConsole("coordinates = " + std::to_string(0) + "  and " + std::to_string(0));
-        mainApp.sendMessageToErrorConsole(to_string(shooter.get_shoots()) + " shoots and " + to_string(shooter.get_hits()) + " hits");
+        //mainApp.sendMessageToErrorConsole("coordinates = " + std::to_string(0) + "  and " + std::to_string(0));
+        //mainApp.sendMessageToErrorConsole(to_string(shooter.get_shoots()) + " shoots and " + to_string(shooter.get_hits()) + " hits");
         mainApp.sendMessageToErrorConsole(" ");
 
-
-        console::setCursorAbsolutePosition(0, 0);
-        target.print();
-
-
-
-
-        //ch = _getch();
 
         console::setCursorAbsolutePosition(0, 0);
         target.print();
@@ -52,33 +43,33 @@
             int b = coordinats.second;
             if (n==-1 or b == -1) return;
 
-            
-            
+
+            bool isShoot = textStats::messageHitOrMiss(2, target.getCenterCoordinates().first * 2 + 5, shooter.fire(target, n, b));
 
 
-            // Воспроизведение звука (если включено)
-            if (sound_on) {
-                std::thread soundThread(play::playMP3, "2.mp3", 1250);
-                soundThread.detach();
-            }
 
-            // Выстрел и проверка попадания
-            if (textStats::messageHitOrMiss(2, target.getCenterCoordinates().first * 2 + 5, shooter.fire(target, n, b))) {
+            if (isShoot) {
                 if (sound_on) {
-                    std::thread soundThread(play::playMP3, "2.mp3", 200);
+                    std::thread soundThread(play::playMP3, "2.mp3", soud_len);
                     soundThread.detach();
                 }
+                mainApp.sendMessageToErrorConsole("HIT");
+
+
             }
+            else
+            {
+                mainApp.sendMessageToErrorConsole("MISS");
+            }
+            mainApp.sendMessageToErrorConsole("coordinates = " + std::to_string(n + 1) + "  and " + std::to_string(b + 1));
+            mainApp.sendMessageToErrorConsole(to_string(shooter.get_shoots()) + " shoots and " + to_string(shooter.get_hits()) + " hits");
 
             // Вывод статистики и информации о стрелке
             //textStats::outpadStatistikElement(n, 1, target.getCenterCoordinates().first * 2 + 5);
             //textStats::outpadStatistikElement(b, 1, target.getCenterCoordinates().first * 2 + 8);
             textStats::outpadShooterStats(5, target.getCenterCoordinates().first * 2 + 5, shooter);
 
-            // Отправка сообщения в консоль для ошибок
-            mainApp.sendMessageToErrorConsole("coordinates = " + std::to_string(n + 1) + "  and " + std::to_string(b + 1));
-            mainApp.sendMessageToErrorConsole(to_string(shooter.get_shoots()) + " shoots and " + to_string(shooter.get_hits()) + " hits");
-            mainApp.sendMessageToErrorConsole(" ");
+            
 
 
             console::setCursorAbsolutePosition(0, 0);

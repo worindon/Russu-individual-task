@@ -1,7 +1,5 @@
 ﻿#include <iostream>
-#include <windows.h>
 #include <string>
-#include <thread>  // Для работы с потоками
 #include "shooting/shooter/Shooter.h"
 #include "shooting/target/CircularTarget.h"
 
@@ -16,7 +14,7 @@
 #include "interface/textStats.h"
 #include "sounds/sounds.h"
 
-const int TargetSize = 31;
+    const int TargetSize = 31;
     const int CharSize = 16;
     const bool sound_on = true;
     const  std::wstring exePath = L"mess.exe";
@@ -31,12 +29,17 @@ const int TargetSize = 31;
     const std::string circularmode(" Round target");
     const std::string humanmode(" Target in the form of a human figure");
 
+    const int consoleWidth = 800;
+    const int consoleHeight = 600;
 
 
 int main() {
     setlocale(LC_ALL, "ru");
-    settings::mySetings(800, 600, CharSize, CharSize);
+    settings::mySetings(consoleWidth, consoleHeight, CharSize, CharSize);
+
     std::cout << "\033[?25l";   //делает курсор невидимым
+
+
     MainConsoleApp mainApp(exePath);
     console::clearConsoleScreen();
     CircularTarget circ(TargetSize);
@@ -66,9 +69,6 @@ int main() {
     std::pair<int, int> coord1 = hum.getCenterCoordinates();
     std::pair<int, int> coord2 = circ.getCenterCoordinates();
 
-
-
-
     switch (mode)
     {
     case 1:
@@ -80,7 +80,5 @@ int main() {
     default:
         break;
     }
-
-
     return 0;
 }

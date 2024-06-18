@@ -7,12 +7,6 @@
 #include <iostream>
 #include <conio.h>
 
-
-
-
-
-
-
 void swap_black_to_green(char ch) {
     console::saveCursorPosition();
     console::setFoneColor("green");
@@ -38,17 +32,12 @@ void swap_green_to_black(char ch) {
     }
 }
 
-
-
 const int Arrow_Up = 72;
 const int Arrow_Down = 80;
 const int Arrow_Left = 75;
 const int Arrow_Right = 77;
 const int Escape_but = 27;
 const int Enter = 13;
-
-
-
 
 std::pair<int, int> scope(const AbstractTarget& targ, const std::pair<int, int>& startpos) {
     std::pair<int, int> size = targ.size();

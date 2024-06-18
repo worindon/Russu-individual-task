@@ -137,7 +137,6 @@
   <ItemGroup>
     <ClInclude Include="MainProject\game\game.h" />
     <ClInclude Include="MainProject\interface\OutputClasses\Field.h" />
-    <ClInclude Include="MainProject\interface\OutputClasses\FieldsMaster.h" />
     <ClInclude Include="Source\console_source\consolewindow\mainwindow.h" />
     <ClInclude Include="Source\console_source\consolewindow\secondwindow.h" />
     <ClInclude Include="MainProject\interface\interface.h" />
